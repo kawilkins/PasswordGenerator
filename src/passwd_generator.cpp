@@ -46,7 +46,7 @@ int main() {
         } catch (const std::invalid_argument &err) {
             std::cerr << "Error: " << err.what() << " Please try again.\n";
         }
-    } while (true)
+    } while (true);
 
     return 0;
 }
