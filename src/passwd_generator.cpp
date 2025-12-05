@@ -1,13 +1,13 @@
-/*==============================================================
-Program:  Random Password Generator
-Author:  Kevin Wilkins
-Date:  12/04/2024
-Current Version:  0.1.0
-Version Date:  12/04/2024
-Description:
-This program will generate a random password consisting of 
-upper case, lowercase, numbers, and special characters.
-==============================================================*/
+/*
+ * @file passwd_generator.cpp
+ * @author Kevin Wilkins <kwilkinsrd@gmail.com>
+ * @date 12/04/2024
+ * @version 0.1.0
+ * @brief Random password generator
+ *
+ * This program will generate a random password consisting of
+ * upper case, lowercase, numbers, and special characters.
+ */
 
 #include <iostream>
 #include <string>
