@@ -2,7 +2,7 @@
  * @file passwd_generator.cpp
  * @author Kevin Wilkins <kwilkinsrd@gmail.com>
  * @date 12/04/2024
- * @version 0.1.0
+ * @version 0.1.1
  * @brief Random password generator
  *
  * This program will generate a random password consisting of
@@ -14,15 +14,38 @@
 #include <cstdlib>
 #include <ctime>
 #include <stdexcept>
+#include <vector>
 
 std::string generatePassword(int length) {
-    std::string allowChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                             "abcdefghijklmnopqrstuvwxyz"
-                             "0123456789"
-                             "!@#$%^&*";
+
+    // Declare a vector array to store all allowed characters
+    std::vector<char> allowChars;
+    // Define the array of characters according to their ASCII value.
+    // Then back fill them into the allowChars vector.
+    std::pair<int,int> charRange[] = {
+        {65, 90},   // Uppercase letters
+        {97, 122},  // Lowercase letters
+        {48, 57}    // Numbers 0-9
+    };
+    for (auto& range : charRange) {
+        for (int c = range.first; c <= range.second; ++c)
+            allowChars.push_back(static_cast<char>(c));
+    }
+
+    // Define an array of special characters to be used.
+    // Then back fill them into the allowChars vector.
+    int specialChars[] = {33, 64, 35, 36, 37, 94, 38, 42};
+    for (int special : specialChars)
+        allowChars.push_back(static_cast<char>(special));
+
+    // Convert ASCII values to string.
+    std::string allChars(allowChars.begin(), allowChars.end());
+
+    // Assemble password as a random generated string of all characters from
+    // the list of allowed characters.
     std::string password;
     for (int i = 0; i < length; ++i) {
-        password += allowChars[rand() % allowChars.length()];
+        password += allChars[rand() % allChars.length()];
     }
     return password;
 }
