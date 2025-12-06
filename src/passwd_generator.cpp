@@ -61,6 +61,8 @@ int main() {
         try {
             if (length < 8) {
                 throw std::invalid_argument("Password must be a minimum of 8 characters.");
+            } else if (length > 30) {
+                throw std::invalid_argument("Password cannot exceed 30 characters.");
             } else {
                 std::string password = generatePassword(length);
                 std::cout << "Password:  " << password << std::endl;
